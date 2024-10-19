@@ -1,37 +1,44 @@
 # AI-skin-care
 
-START
-OPEN application
- 
-DISPLAY "Login or Create Account"
- WAIT FOR user choice
- 
-IF user chooses to login THEN
-    PROMPT user for credentials
-    VERIFY credentials
-ELSE  user chooses to create account THEN
-    PROMPT user for account details
-    CREATE new account
- 
-DISPLAY "Home Page"
-SELECT "Beauty Section"
- 
-DISPLAY "AL Icon"
-WAIT FOR user click
- 
-IF user clicks icon THEN
-    DISPLAY "Choose an option:"
-    DISPLAY "1. Choose Image from Gallery"
-    DISPLAY "2. Take Photo"
-     
- IF user choice == 1 THEN
-        LOAD image from gallery
- ELSE user choice == 2 THEN
-        OPEN camera
-        CAPTURE photo
- 
-    ANALYZE image
-    RECOMMEND products based on analysis
-    DISPLAY recommended products
-  
-END
+while True:
+    print("Login or Create Account")
+    user_choice = input("Enter your choice: ")
+
+    if user_choice == "Login":
+        username = input("Enter username: ")
+        password = input("Enter password: ")
+        # Verify credentials
+        
+    elif user_choice == "Create Account":
+        username = input("Enter new username: ")
+        password = input("Enter new password: ")
+        # Create new account
+        
+    print("Home Page")
+    print("Navigating to Beauty Section...")
+    
+    print("AL Icon")
+    user_click = input("Click the icon (y/n): ")
+    
+    if user_click.lower() == "y":
+        print("Choose an option:")
+        print("1. Choose Image from Gallery")
+        print("2. Take Photo")
+        
+        user_choice = input("Enter your choice: ")
+        
+        if user_choice == "1":
+            image = load_image_from_gallery()
+        elif user_choice == "2":
+            image = capture_photo()
+            
+        print("Analyzing image...")
+        recommended_products = analyze_image(image)
+        
+        print("Recommended products:")
+        for product in recommended_products:
+            print(product)
+        
+    else:
+        print("Exiting...")
+        break
